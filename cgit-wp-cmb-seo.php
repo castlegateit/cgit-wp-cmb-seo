@@ -13,13 +13,6 @@ License: MIT
 */
 
 /**
- * Check Custom Meta Boxes loaded
- */
-if ( ! class_exists('CMB_Meta_Box') ) {
-    return;
-}
-
-/**
  * Add SEO fields
  */
 function cgit_seo_fields ($meta_boxes) {
@@ -63,7 +56,7 @@ function cgit_seo_title ($title) {
 
     global $post;
 
-    if ( isset($post) && get_post_meta($post->ID, 'seo_title', TRUE) ) {
+    if ( class_exists('CMB_Meta_Box') && isset($post) && get_post_meta($post->ID, 'seo_title', TRUE) ) {
         $title = get_post_meta($post->ID, 'seo_title', TRUE);
     }
 
@@ -80,7 +73,7 @@ function cgit_seo_description () {
 
     global $post;
 
-    if ( isset($post) && get_post_meta($post->ID, 'seo_description', TRUE) ) {
+    if ( class_exists('CMB_Meta_Box') && isset($post) && get_post_meta($post->ID, 'seo_description', TRUE) ) {
         $description = get_post_meta($post->ID, 'seo_description', TRUE);
         echo "<meta name='description' content='$description' />\n";
     }
