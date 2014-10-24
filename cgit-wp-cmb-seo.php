@@ -35,13 +35,15 @@ function cgit_seo_fields ($meta_boxes) {
         ),
     );
 
-    $meta_boxes[] = array(
+    $meta_box = array(
         'id'      => 'cgit-wp-cmb-seo',
         'title'   => 'SEO',
         'pages'   => array('post', 'page'),
         'context' => 'side',
         'fields'  => $fields,
     );
+
+    $meta_boxes[] = apply_filters('cgit_seo_fields', $meta_box);
 
     return $meta_boxes;
 
