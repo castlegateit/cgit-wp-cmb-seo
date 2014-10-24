@@ -54,9 +54,13 @@ add_filter('cmb_meta_boxes', 'cgit_seo_fields');
  */
 function cgit_seo_title ($title) {
 
+    if ( ! class_exists('CMB_Meta_Box') ) {
+        return $title;
+    }
+
     global $post;
 
-    if ( class_exists('CMB_Meta_Box') && isset($post) && get_post_meta($post->ID, 'seo_title', TRUE) ) {
+    if ( isset($post) && get_post_meta($post->ID, 'seo_title', TRUE) ) {
         $title = get_post_meta($post->ID, 'seo_title', TRUE);
     }
 
@@ -71,9 +75,13 @@ add_filter('wp_title', 'cgit_seo_title', 999);
  */
 function cgit_seo_description () {
 
+    if ( ! class_exists('CMB_Meta_Box') ) {
+        return FALSE;
+    }
+
     global $post;
 
-    if ( class_exists('CMB_Meta_Box') && isset($post) && get_post_meta($post->ID, 'seo_description', TRUE) ) {
+    if ( isset($post) && get_post_meta($post->ID, 'seo_description', TRUE) ) {
         $description = get_post_meta($post->ID, 'seo_description', TRUE);
         echo "<meta name='description' content='$description' />\n";
     }
