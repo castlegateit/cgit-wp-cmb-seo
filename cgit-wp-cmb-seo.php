@@ -91,3 +91,22 @@ function cgit_seo_description () {
 }
 
 add_action('wp_head', 'cgit_seo_description', 0);
+
+/**
+ * Generate heading
+ *
+ * This is a utility function for use in your theme. Because the heading could
+ * appear anywhere on the page, the heading is not added to the site
+ * automatically.
+ */
+function cgit_seo_heading ($sep = ': ') {
+
+    if ( isset($post) && get_post_meta($post->ID, 'seo_heading', TRUE) ) {
+        return get_post_meta($post->ID, 'seo_heading', TRUE);
+    } elseif ( is_page() || is_single() ) {
+        return get_bloginfo('name') . $sep . get_the_title();
+    } else {
+        return get_bloginfo('name');
+    }
+
+}
