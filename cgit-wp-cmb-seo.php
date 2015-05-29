@@ -64,10 +64,8 @@ function cgit_seo_title ($title) {
 
     if ( is_archive() ) {
         // Title for archives
-        $post_type = get_post_type_object($post->post_type);
-        $title = $post_type->labels->singular_name . ' archives';
-    }
-    elseif ( isset($post) && get_post_meta($post->ID, 'seo_title', TRUE) ) {
+        $title = post_type_archive_title('', false) . ' archives';
+    } elseif ( isset($post) && get_post_meta($post->ID, 'seo_title', TRUE) ) {
         // Title for posts/pages
         $title = get_post_meta($post->ID, 'seo_title', TRUE);
     }
