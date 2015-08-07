@@ -7,3 +7,8 @@
     <li>Heading: a hidden heading made visible to search engines.</li>
     <li>Description: the text displayed in the search engine results listing.</li>
 </ul>
+
+<figure>
+    <img src="<?php echo plugin_dir_url(__FILE__); ?>images/fields.png" alt="" />
+    <figcaption>The SEO fields in the WordPress admin panel. These will appear on the right of the screen when you are editing a post or page.</figcaption>
+</figure>
