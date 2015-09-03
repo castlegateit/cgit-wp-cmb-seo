@@ -56,18 +56,16 @@ add_filter('cmb_meta_boxes', 'cgit_seo_fields');
  */
 function cgit_seo_title ($title) {
 
-    if ( ! class_exists('CMB_Meta_Box') ) {
+    $is_post = is_single() || is_page();
+
+    if (!class_exists('CMB_Meta_Box') || !$is_post) {
         return $title;
     }
 
     global $post;
 
-    if ( is_archive() ) {
-        // Title for archives
-        $title = post_type_archive_title('', false) . ' archives';
-    } elseif ( isset($post) && get_post_meta($post->ID, 'seo_title', TRUE) ) {
-        // Title for posts/pages
-        $title = get_post_meta($post->ID, 'seo_title', TRUE);
+    if (get_post_meta($post->ID, 'seo_title', true)) {
+        $title = get_post_meta($post->ID, 'seo_title', true);
     }
 
     return $title;
