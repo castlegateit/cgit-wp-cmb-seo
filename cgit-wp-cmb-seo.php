@@ -5,7 +5,7 @@
 Plugin Name: Castlegate IT WP CMB SEO
 Plugin URI: http://github.com/castlegateit/cgit-wp-cmb-seo
 Description: Simple SEO fields for titles, headings, and descriptions using Custom Meta Boxes.
-Version: 1.2
+Version: 1.3
 Author: Castlegate IT
 Author URI: http://www.castlegateit.co.uk/
 License: MIT
@@ -57,8 +57,12 @@ add_filter('cmb_meta_boxes', 'cgit_seo_fields');
 function cgit_seo_user_guide($sections) {
 
     $file = dirname(__FILE__) . '/user-guide.php';
-    $sections['cgit-wp-cmb-seo'] = Cgit\UserGuide::getFile($file);
 
+    $sections['cgit-wp-cmb-seo'] =
+    [
+        'heading' => 'SEO',
+        'content' => Cgit\UserGuide::getFile($file)
+    ];
     return $sections;
 
 }
